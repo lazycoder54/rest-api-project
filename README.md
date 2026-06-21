@@ -12,8 +12,6 @@ GitHub: https://github.com/lazycoder54
 
 ## Project Overview
 
-A full-stack username suggestion platform that generates creative usernames based on user interests using AI.
-
 The project consists of:
 
 * React + Vite Frontend
@@ -116,7 +114,7 @@ docker compose up --build
 Create a database:
 
 ```sql
-CREATE DATABASE username_platform;
+CREATE DATABASE NagaEd Assignment;
 ```
 
 Update database credentials in the backend configuration if necessary.
@@ -207,17 +205,6 @@ The Docker Compose setup includes:
 * backend
 * ai-service
 * mysql
-
----
-
-## API Flow
-
-1. User enters interests in the React frontend.
-2. Frontend sends request to Flask backend.
-3. Flask backend stores and manages application data.
-4. Backend forwards username-generation requests to FastAPI AI Service.
-5. FastAPI AI Service communicates with Groq API.
-6. Generated usernames are returned to the frontend.
 
 ---
 
