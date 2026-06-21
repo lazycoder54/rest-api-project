@@ -17,65 +17,50 @@ export default function Register() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
 
-  const [formData, setFormData] =
-    useState<RegisterForm>({
-      username: "",
-      email: "",
-      password: "",
-      address: "",
-    });
+  const [formData, setFormData] = useState<RegisterForm>({
+    username: "",
+    email: "",
+    password: "",
+    address: "",
+  });
 
-  const handleChange = (
-    e: ChangeEvent<HTMLInputElement>
-  ) => {
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     setFormData({
       ...formData,
       [e.target.name]: e.target.value,
     });
   };
 
-  const handleSubmit = async (
-    e: FormEvent<HTMLFormElement>
-  ) => {
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     try {
       setLoading(true);
 
-      await api.post(
-        "/api/register",
-        formData
-      );
+      await api.post("/api/register", formData);
+      alert("Registration successful. Please login.");
+      navigate("/");
 
       navigate("/");
     } catch (err: unknown) {
-  if (axios.isAxiosError(err)) {
-    setError(
-      err.response?.data?.message ??
-      "Registration failed"
-    );
-  } else {
-    setError("Registration failed");
-  }
-} finally {
+      if (axios.isAxiosError(err)) {
+        setError(err.response?.data?.message ?? "Registration failed");
+      } else {
+        setError("Registration failed");
+      }
+    } finally {
       setLoading(false);
     }
-}
-
-  
+  };
 
   return (
     <div className="container">
       <h2>Register</h2>
 
-      {error && <p>{error}</p>}
+      {error && <p className="error">{error}</p>}
 
       <form onSubmit={handleSubmit}>
-        <input
-          name="username"
-          placeholder="Username"
-          onChange={handleChange}
-        />
+        <input name="username" placeholder="Username" onChange={handleChange} />
 
         <input
           name="email"
@@ -91,22 +76,14 @@ export default function Register() {
           onChange={handleChange}
         />
 
-        <input
-          name="address"
-          placeholder="Address"
-          onChange={handleChange}
-        />
+        <input name="address" placeholder="Address" onChange={handleChange} />
 
         <button disabled={loading}>
-          {loading
-            ? "Loading..."
-            : "Register"}
+          {loading ? "Loading..." : "Register"}
         </button>
       </form>
 
-      <Link to="/">
-        Already have an account?
-      </Link>
+      <Link to="/">Already have an account?</Link>
     </div>
   );
 }

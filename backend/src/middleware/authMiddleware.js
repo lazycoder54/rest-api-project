@@ -2,7 +2,8 @@ import jwt from "jsonwebtoken";
 
 const authenticate = (req, res, next) => {
   try {
-    const authHeader = req.headers.authorization;
+    const authHeader =
+      req.headers.authorization;
 
     if (!authHeader) {
       return res.status(401).json({
@@ -11,11 +12,20 @@ const authenticate = (req, res, next) => {
       });
     }
 
-    const token = authHeader.split(" ")[1];
+    const token =
+      authHeader.split(" ")[1];
 
-    const decoded = jwt.verify(token, process.env.JWT_SECRET);
+    const decoded = jwt.verify(
+      token,
+      process.env.JWT_SECRET
+    );
 
-    if (Number(req.params.id) !== req.user.id) {
+    req.user = decoded;
+
+    if (
+      Number(req.params.id) !==
+      req.user.id
+    ) {
       return res.status(403).json({
         success: false,
         message: "Forbidden",
@@ -23,7 +33,9 @@ const authenticate = (req, res, next) => {
     }
 
     next();
-  } catch {
+  } catch (error) {
+    console.error(error);
+
     return res.status(401).json({
       success: false,
       message: "Invalid token",

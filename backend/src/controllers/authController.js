@@ -89,7 +89,8 @@ export const login = async (
       { id: user.id },
       process.env.JWT_SECRET,
       { expiresIn: "1d" }
-    );
+    ); 
+    console.log("LOGIN SECRET:", process.env.JWT_SECRET);
 
     res.status(200).json({
       success: true,
