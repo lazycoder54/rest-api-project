@@ -4,9 +4,7 @@
 
 Pranjit Das
 
-Email: [your-email@example.com](mailto:pranjitd865@gmail.com)
-
-Phone: 9365443101
+Email: [pranjitd865@gmail.com](mailto:pranjitd865@gmail.com)
 
 GitHub: https://github.com/lazycoder54
 
@@ -22,13 +20,12 @@ This project consists of:
 * MySQL Database
 * Groq LLM Integration
 
-The application generates creative username suggestions based on user interests.
 
 ---
 
 ## Architecture
 
-See architecture.png
+![Architecture Diagram](./architecture.png)
 
 ---
 
@@ -66,7 +63,7 @@ Containerization:
 
 ### Clone Repository
 
-git clone <repository-url>
+git clone <https://github.com/lazycoder54/rest-api-project.git>
 
 cd project
 
@@ -95,9 +92,9 @@ http://localhost:8000/docs
 
 ## Docker Services
 
-frontend
-backend
-ai-service
+frontend,
+backend,
+ai-service,
 mysql
 
 ---
@@ -109,6 +106,3 @@ mysql
 
 ---
 
-## Notes
-
-The system uses a separate FastAPI microservice for AI-based username generation.
